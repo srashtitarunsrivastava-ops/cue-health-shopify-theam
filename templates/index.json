@@ -1,0 +1,273 @@
+{
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Your Cue to Healthy Life",
+            "heading_size": "h0"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "Science-backed supplements crafted for real, lasting wellness.",
+            "text_style": "subtitle"
+          }
+        },
+        "button": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Shop All Products",
+            "button_link_1": "shopify://collections/all",
+            "button_style_secondary_1": false,
+            "button_label_2": "Our Story",
+            "button_link_2": "shopify://pages/about-us",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": ["heading", "text", "button"],
+      "settings": {
+        "image_overlay_opacity": 40,
+        "image_height": "large",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "trust_badges": {
+      "type": "trust-badges-row",
+      "blocks": {
+        "badge_1": { "type": "badge", "settings": { "label": "FSSAI Approved" } },
+        "badge_2": { "type": "badge", "settings": { "label": "Lab Tested" } },
+        "badge_3": { "type": "badge", "settings": { "label": "No Fillers" } },
+        "badge_4": { "type": "badge", "settings": { "label": "Free Shipping ₹499+" } },
+        "badge_5": { "type": "badge", "settings": { "label": "100% Natural" } }
+      },
+      "block_order": ["badge_1", "badge_2", "badge_3", "badge_4", "badge_5"],
+      "settings": {}
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "all",
+        "products_to_show": 8,
+        "title": "Our Bestsellers",
+        "heading_size": "h2",
+        "description": "Top-rated supplements loved by thousands of wellness seekers",
+        "show_description": true,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 60,
+        "padding_bottom": 36
+      }
+    },
+    "shop_by_concern": {
+      "type": "shop-by-concern",
+      "blocks": {
+        "concern_1": { "type": "concern", "settings": { "label": "Sleep & Recovery", "emoji": "😴" } },
+        "concern_2": { "type": "concern", "settings": { "label": "Immunity", "emoji": "🛡️" } },
+        "concern_3": { "type": "concern", "settings": { "label": "Women's Health", "emoji": "💜" } },
+        "concern_4": { "type": "concern", "settings": { "label": "Gut Health", "emoji": "🌱" } },
+        "concern_5": { "type": "concern", "settings": { "label": "Energy & Focus", "emoji": "⚡" } }
+      },
+      "block_order": ["concern_1", "concern_2", "concern_3", "concern_4", "concern_5"],
+      "settings": {
+        "heading": "Shop by Concern",
+        "subheading": "Find the right supplement for your wellness goal",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "why_choose_us": {
+      "type": "why-choose-us",
+      "blocks": {
+        "usp_1": {
+          "type": "usp_item",
+          "settings": {
+            "icon_emoji": "🌿",
+            "title": "100% Natural",
+            "description": "Clean ingredients — no artificial colours, flavours, or fillers."
+          }
+        },
+        "usp_2": {
+          "type": "usp_item",
+          "settings": {
+            "icon_emoji": "🔬",
+            "title": "Lab Tested & Certified",
+            "description": "Every batch is third-party tested for purity, potency, and safety."
+          }
+        },
+        "usp_3": {
+          "type": "usp_item",
+          "settings": {
+            "icon_emoji": "🏥",
+            "title": "FSSAI Approved",
+            "description": "Manufactured in FSSAI-licensed facilities meeting the highest safety standards."
+          }
+        },
+        "usp_4": {
+          "type": "usp_item",
+          "settings": {
+            "icon_emoji": "💊",
+            "title": "Clinically Researched",
+            "description": "Formulas backed by peer-reviewed science and clinical research."
+          }
+        },
+        "usp_5": {
+          "type": "usp_item",
+          "settings": {
+            "icon_emoji": "🚀",
+            "title": "Fast & Free Delivery",
+            "description": "Free shipping on orders above ₹499. Delivered pan-India in 3–5 days."
+          }
+        },
+        "usp_6": {
+          "type": "usp_item",
+          "settings": {
+            "icon_emoji": "🔄",
+            "title": "7-Day Easy Returns",
+            "description": "Not satisfied? Return within 7 days for a full refund — no questions asked."
+          }
+        }
+      },
+      "block_order": ["usp_1", "usp_2", "usp_3", "usp_4", "usp_5", "usp_6"],
+      "settings": {
+        "heading": "Why Choose CueHealth?",
+        "subheading": "Science-backed supplements crafted for real results",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "customer_testimonials": {
+      "type": "customer-testimonials",
+      "blocks": {
+        "t1": {
+          "type": "testimonial",
+          "settings": {
+            "customer_name": "Priya S.",
+            "customer_location": "Mumbai",
+            "rating": 5,
+            "review_text": "CueHealth supplements have completely transformed my energy levels. I feel more focused and active throughout the day. Highly recommended!"
+          }
+        },
+        "t2": {
+          "type": "testimonial",
+          "settings": {
+            "customer_name": "Rahul M.",
+            "customer_location": "Delhi",
+            "rating": 5,
+            "review_text": "Finally found supplements that actually work! Great quality ingredients and fast delivery. Will definitely order again."
+          }
+        },
+        "t3": {
+          "type": "testimonial",
+          "settings": {
+            "customer_name": "Ananya K.",
+            "customer_location": "Bangalore",
+            "rating": 5,
+            "review_text": "The sleep supplement is a game-changer. I was sceptical at first but noticed a huge improvement in my sleep quality within the first week."
+          }
+        },
+        "t4": {
+          "type": "testimonial",
+          "settings": {
+            "customer_name": "Vikram R.",
+            "customer_location": "Hyderabad",
+            "rating": 4,
+            "review_text": "Premium quality at a fair price. Love that they're FSSAI approved and lab tested. Trust is everything when it comes to supplements."
+          }
+        },
+        "t5": {
+          "type": "testimonial",
+          "settings": {
+            "customer_name": "Neha T.",
+            "customer_location": "Pune",
+            "rating": 5,
+            "review_text": "I've been using CueHealth for 3 months now and I'm absolutely blown away by the results. My immunity has improved noticeably!"
+          }
+        }
+      },
+      "block_order": ["t1", "t2", "t3", "t4", "t5"],
+      "settings": {
+        "heading": "What Our Customers Say",
+        "subheading": "Real results from real people",
+        "bg_color": "#F8FAF9",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "featured_blog": {
+      "type": "featured-blog",
+      "settings": {
+        "heading": "Wellness Insights",
+        "heading_size": "h2",
+        "blog": "news",
+        "post_limit": 3,
+        "columns_desktop": 3,
+        "color_scheme": "scheme-2",
+        "show_image": true,
+        "show_date": true,
+        "show_author": false,
+        "show_excerpt": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Join the Wellness Community"
+          }
+        },
+        "subtext": {
+          "type": "paragraph",
+          "settings": {
+            "text": "Get science-backed wellness tips, product launches, and exclusive offers — straight to your inbox."
+          }
+        }
+      },
+      "block_order": ["heading", "subtext"],
+      "settings": {
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "image_banner",
+    "trust_badges",
+    "featured_collection",
+    "shop_by_concern",
+    "why_choose_us",
+    "customer_testimonials",
+    "featured_blog",
+    "newsletter"
+  ]
+}

@@ -1,0 +1,51 @@
+{{ 'custom-cuehealth.css' | asset_url | stylesheet_tag }}
+
+<div class="ch-trust-badges">
+  <div class="ch-trust-badges__inner">
+    {%- for block in section.blocks -%}
+      <div class="ch-trust-badge" {{ block.shopify_attributes }}>
+        <div class="ch-trust-badge__icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+        </div>
+        <span>{{ block.settings.label }}</span>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Trust Badges Row",
+  "tag": "section",
+  "class": "ch-trust-badges-section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Trust Badge",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Badge Label",
+          "default": "FSSAI Approved"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Badges Row",
+      "blocks": [
+        { "type": "badge", "settings": { "label": "FSSAI Approved" } },
+        { "type": "badge", "settings": { "label": "Lab Tested" } },
+        { "type": "badge", "settings": { "label": "No Fillers" } },
+        { "type": "badge", "settings": { "label": "Free Shipping ₹499+" } },
+        { "type": "badge", "settings": { "label": "100% Natural" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
