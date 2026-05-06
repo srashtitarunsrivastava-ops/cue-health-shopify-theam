@@ -1,0 +1,611 @@
+/* ==============================================
+   CueHealth — Dawn Component Overrides
+   Ayurvedic Professional Design System
+   ============================================== */
+
+/* ------------------------------------------------
+   1. GLOBAL TYPOGRAPHY
+   ------------------------------------------------ */
+body {
+  font-family: 'Poppins', var(--font-body-family), system-ui, sans-serif !important;
+  /* Background & text colour come from Dawn's colour scheme variables — do NOT override here */
+}
+
+/* Font family only — colour handled per scheme below */
+h1, h2, h3, h4, h5, h6,
+.h0, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* ---- Light backgrounds (scheme-1 cream, scheme-2 cream-dark) ---- */
+.color-scheme-1 h1, .color-scheme-1 h2, .color-scheme-1 h3,
+.color-scheme-1 h4, .color-scheme-1 h5, .color-scheme-1 h6,
+.color-scheme-2 h1, .color-scheme-2 h2, .color-scheme-2 h3,
+.color-scheme-2 h4, .color-scheme-2 h5, .color-scheme-2 h6 { color: #0D2818 !important; }
+
+.color-scheme-1 a, .color-scheme-2 a { color: #1B4332; }
+.color-scheme-1 a:hover, .color-scheme-2 a:hover { color: #40916C; }
+
+/* ---- Dark green backgrounds (scheme-3 forest, scheme-4 deep) ---- */
+.color-scheme-3 h1, .color-scheme-3 h2, .color-scheme-3 h3,
+.color-scheme-3 h4, .color-scheme-3 h5, .color-scheme-3 h6,
+.color-scheme-4 h1, .color-scheme-4 h2, .color-scheme-4 h3,
+.color-scheme-4 h4, .color-scheme-4 h5, .color-scheme-4 h6 { color: #FFFFFF !important; }
+
+.color-scheme-3 p, .color-scheme-4 p { color: rgba(255,255,255,0.82); }
+.color-scheme-3 a, .color-scheme-4 a { color: #F4D03F; }
+.color-scheme-3 a:hover, .color-scheme-4 a:hover { color: #fff; }
+
+/* ---- Gold accent background (scheme-5) ---- */
+.color-scheme-5 h1, .color-scheme-5 h2, .color-scheme-5 h3,
+.color-scheme-5 h4, .color-scheme-5 h5, .color-scheme-5 h6 { color: #FFFFFF !important; }
+.color-scheme-5 a { color: #fff; }
+
+/* Default fallback for elements outside colour-scheme wrappers */
+main h1, main h2, main h3, main h4, main h5, main h6 { color: #0D2818; }
+
+/* ------------------------------------------------
+   2. HEADER — Sticky, Clean, Professional
+   ------------------------------------------------ */
+.header {
+  background-color: #FDF8F0 !important;
+  border-bottom: 1px solid #E8DDD0 !important;
+  box-shadow: 0 2px 12px rgba(27,67,50,0.07) !important;
+}
+.header__heading-link,
+.header__heading-link:hover { color: #1B4332 !important; }
+
+/* Nav links — header only (not footer) */
+.header .header__menu-item,
+.header .list-menu__item--link {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 1.4rem !important;
+  color: #2C1810 !important;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease !important;
+}
+.header .header__menu-item:hover,
+.header .list-menu__item--link:hover { color: #1B4332 !important; }
+.header .header__menu-item--active { color: #1B4332 !important; border-bottom: 2px solid #C8960C !important; }
+
+/* Mobile nav drawer — dark background */
+.menu-drawer .list-menu__item--link { color: #2C1810 !important; }
+.menu-drawer .list-menu__item--link:hover { color: #1B4332 !important; }
+
+/* Header icons (cart, search, account) */
+.header__icon svg { color: #2C1810; }
+.header__icon:hover svg { color: #1B4332; }
+
+/* Cart bubble */
+.cart-count-bubble { background-color: #C8960C !important; }
+
+/* ------------------------------------------------
+   3. ANNOUNCEMENT BAR
+   ------------------------------------------------ */
+.announcement-bar-section .utility-bar {
+  background: linear-gradient(90deg, #0D2818, #1B4332, #0D2818) !important;
+  background-size: 200% !important;
+}
+.announcement-bar__message { color: #fff !important; font-family: 'Poppins', sans-serif !important; }
+
+/* ------------------------------------------------
+   4. PRODUCT CARDS
+   ------------------------------------------------ */
+.card {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  transition: transform 0.28s ease, box-shadow 0.28s ease !important;
+}
+.card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 16px 40px rgba(200,150,12,0.15) !important;
+}
+.card__media {
+  border-radius: 12px 12px 0 0 !important;
+  overflow: hidden !important;
+}
+.card__media img { transition: transform 0.45s ease !important; }
+.card:hover .card__media img { transform: scale(1.04) !important; }
+.card__content { padding: 14px 16px 18px !important; }
+.card__heading { font-family: 'Playfair Display', serif !important; font-size: 1.6rem !important; color: #2C1810 !important; }
+.card__heading a:hover { color: #1B4332 !important; }
+
+/* Price on cards */
+.price .price-item--regular { color: #2C1810 !important; font-weight: 600 !important; }
+.price--on-sale .price-item--sale { color: #C65D2B !important; font-weight: 700 !important; }
+.price--on-sale .price-item--regular { color: #7C6B5E !important; }
+
+/* Badges */
+.badge { border-radius: 30px !important; font-family: 'Poppins', sans-serif !important; font-weight: 700 !important; font-size: 1.1rem !important; }
+.badge--sale { background: #C65D2B !important; color: #fff !important; }
+.badge--new { background: #1B4332 !important; color: #fff !important; }
+.badge--sold-out { background: #7C6B5E !important; color: #fff !important; }
+
+/* Quick add button */
+.quick-add__submit { background: #1B4332 !important; border-radius: 8px !important; font-family: 'Poppins', sans-serif !important; }
+.quick-add__submit:hover { background: #40916C !important; }
+
+/* ------------------------------------------------
+   5. BUTTONS — Scheme-Aware Ayurvedic Gradients
+   ------------------------------------------------ */
+.button,
+.btn,
+[type="submit"]:not(.search-modal__submit):not(.newsletter-form__button):not(.ch-form-submit):not(.ch-sticky-atc__btn) {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  letter-spacing: 0.03em !important;
+  transition: all 0.28s ease !important;
+}
+
+/* Light bg (scheme-1, scheme-2) — green gradient primary button */
+.color-scheme-1 .button:not(.button--secondary):not(.button--tertiary),
+.color-scheme-2 .button:not(.button--secondary):not(.button--tertiary) {
+  background: linear-gradient(135deg, #1B4332, #40916C) !important;
+  border: none !important;
+  color: #FDF8F0 !important;
+}
+.color-scheme-1 .button:not(.button--secondary):not(.button--tertiary):hover,
+.color-scheme-2 .button:not(.button--secondary):not(.button--tertiary):hover {
+  background: linear-gradient(135deg, #40916C, #1B4332) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(27,67,50,0.3) !important;
+}
+
+/* Dark bg (scheme-3, scheme-4) — gold gradient primary button */
+.color-scheme-3 .button:not(.button--secondary):not(.button--tertiary),
+.color-scheme-4 .button:not(.button--secondary):not(.button--tertiary) {
+  background: linear-gradient(135deg, #C8960C, #E67E22) !important;
+  border: none !important;
+  color: #fff !important;
+}
+.color-scheme-3 .button:not(.button--secondary):not(.button--tertiary):hover,
+.color-scheme-4 .button:not(.button--secondary):not(.button--tertiary):hover {
+  background: linear-gradient(135deg, #E67E22, #C8960C) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(200,150,12,0.4) !important;
+}
+
+/* Gold bg (scheme-5) — green button */
+.color-scheme-5 .button:not(.button--secondary):not(.button--tertiary) {
+  background: linear-gradient(135deg, #1B4332, #40916C) !important;
+  border: none !important;
+  color: #fff !important;
+}
+
+/* Secondary buttons — light schemes */
+.color-scheme-1 .button--secondary,
+.color-scheme-2 .button--secondary { border-color: #1B4332 !important; color: #1B4332 !important; }
+.color-scheme-1 .button--secondary:hover,
+.color-scheme-2 .button--secondary:hover { background: #1B4332 !important; color: #FDF8F0 !important; }
+
+/* Secondary buttons — dark schemes */
+.color-scheme-3 .button--secondary,
+.color-scheme-4 .button--secondary { border-color: rgba(255,255,255,0.5) !important; color: #fff !important; }
+.color-scheme-3 .button--secondary:hover,
+.color-scheme-4 .button--secondary:hover { background: rgba(255,255,255,0.15) !important; border-color: #fff !important; }
+
+/* Product form submit — always green regardless of page scheme */
+.product-form__submit {
+  background: linear-gradient(135deg, #1B4332, #40916C) !important;
+  border: none !important;
+  color: #fff !important;
+}
+.product-form__submit:hover {
+  background: linear-gradient(135deg, #40916C, #1B4332) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(27,67,50,0.3) !important;
+}
+
+/* ------------------------------------------------
+   6. FORMS & INPUTS
+   ------------------------------------------------ */
+.field__input,
+.select__select,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+textarea,
+select {
+  background-color: #FFFFFF !important;
+  border-color: #E8DDD0 !important;
+  border-radius: 8px !important;
+  color: #2C1810 !important;
+  font-family: 'Poppins', sans-serif !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+.field__input:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  border-color: #1B4332 !important;
+  box-shadow: 0 0 0 3px rgba(27,67,50,0.12) !important;
+  outline: none !important;
+}
+.field__label { color: #7C6B5E !important; font-family: 'Poppins', sans-serif !important; font-size: 1.3rem !important; }
+
+/* ------------------------------------------------
+   7. COLLECTION PAGE
+   ------------------------------------------------ */
+.collection { background: #FDF8F0 !important; }
+.collection__title { font-family: 'Playfair Display', serif !important; color: #0D2818 !important; }
+.collection__description { color: #7C6B5E !important; font-family: 'Poppins', sans-serif !important; }
+
+/* Facets / Filters */
+.facets__heading { font-family: 'Playfair Display', serif !important; color: #2C1810 !important; font-size: 1.6rem !important; }
+.facet-checkbox input[type="checkbox"]:checked + .facet-checkbox__label::before,
+.facets input[type="checkbox"]:checked + label::before {
+  background-color: #1B4332 !important;
+  border-color: #1B4332 !important;
+}
+.facets__summary { font-family: 'Poppins', sans-serif !important; color: #2C1810 !important; }
+.facets__label { color: #7C6B5E !important; font-family: 'Poppins', sans-serif !important; }
+.active-facets__button { background: #F5EDD8 !important; border-color: #E8DDD0 !important; color: #2C1810 !important; border-radius: 30px !important; }
+.active-facets__button:hover { background: #1B4332 !important; color: #fff !important; }
+.active-facets__button-wrapper:hover .active-facets__button-remove { color: #fff !important; }
+
+/* Sort by dropdown */
+.select-label { font-family: 'Poppins', sans-serif !important; color: #7C6B5E !important; }
+.select__select { border-radius: 8px !important; border-color: #E8DDD0 !important; }
+
+/* Collection product count */
+.product-count__text { color: #7C6B5E !important; font-family: 'Poppins', sans-serif !important; }
+
+/* ------------------------------------------------
+   8. CART DRAWER / NOTIFICATION
+   ------------------------------------------------ */
+.cart-drawer { background: #FDF8F0 !important; }
+.cart-drawer__header { background: #FDF8F0 !important; border-bottom: 1px solid #E8DDD0 !important; }
+.cart-drawer__header h2 { font-family: 'Playfair Display', serif !important; color: #0D2818 !important; }
+.cart-drawer__footer { background: #F5EDD8 !important; border-top: 1px solid #E8DDD0 !important; }
+.totals__total { font-family: 'Playfair Display', serif !important; color: #0D2818 !important; }
+.cart-items td { border-color: #E8DDD0 !important; }
+.cart-item__name { font-family: 'Playfair Display', serif !important; color: #2C1810 !important; }
+.cart-item__price-wrapper .price { color: #1B4332 !important; font-weight: 700 !important; }
+
+/* ------------------------------------------------
+   9. SEARCH OVERLAY
+   ------------------------------------------------ */
+.search-modal__form { background: #FDF8F0 !important; }
+.search-modal { background: rgba(253,248,240,0.97) !important; backdrop-filter: blur(8px) !important; }
+.predictive-search { background: #FDF8F0 !important; border-color: #E8DDD0 !important; border-radius: 12px !important; box-shadow: 0 8px 32px rgba(27,67,50,0.12) !important; }
+.predictive-search__item { font-family: 'Poppins', sans-serif !important; }
+.predictive-search__item:hover { background: #F5EDD8 !important; }
+
+/* ------------------------------------------------
+   10. FOOTER
+   ------------------------------------------------ */
+.footer { background-color: #1B4332 !important; }
+
+/* Footer headings always white — scoped to footer */
+.footer .footer-block__heading,
+.footer h2, .footer h3 {
+  font-family: 'Playfair Display', serif !important;
+  color: rgba(255,255,255,0.95) !important;
+  font-size: 1.6rem !important;
+  margin-bottom: 16px !important;
+}
+
+/* Footer paragraph text */
+.footer p, .footer .rte { color: rgba(255,255,255,0.75) !important; font-size: 1.35rem !important; }
+
+/* Footer links — scoped to footer only (not header nav) */
+.footer .footer-block__details-content a { color: rgba(255,255,255,0.72) !important; text-decoration: none !important; transition: color 0.2s ease, padding-left 0.2s ease !important; }
+.footer .footer-block__details-content a:hover { color: #C8960C !important; padding-left: 4px; }
+
+/* Copyright */
+.footer__copyright .copyright__content,
+.footer__copyright small { color: rgba(255,255,255,0.45) !important; font-family: 'Poppins', sans-serif !important; font-size: 1.2rem !important; }
+.footer__copyright a { color: rgba(255,255,255,0.55) !important; }
+.footer__copyright a:hover { color: #C8960C !important; }
+
+/* Newsletter in footer */
+.footer-block__newsletter .newsletter-form__field-wrapper .field__input {
+  background: rgba(255,255,255,0.1) !important;
+  border-color: rgba(255,255,255,0.2) !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+}
+.footer-block__newsletter .field__label { color: rgba(255,255,255,0.6) !important; }
+.newsletter-form__button { background: #C8960C !important; border-radius: 0 8px 8px 0 !important; }
+.newsletter-form__button:hover { background: #F4D03F !important; }
+
+/* Payment icons */
+.list-payment .icon { filter: brightness(0) invert(1) opacity(0.5); }
+.footer .list-payment .icon:hover { filter: brightness(0) invert(1) opacity(0.9); }
+
+/* ------------------------------------------------
+   11. BREADCRUMBS (Dawn native)
+   ------------------------------------------------ */
+.breadcrumb { font-family: 'Poppins', sans-serif !important; }
+.breadcrumb__item-link { color: #7C6B5E !important; }
+.breadcrumb__item-link:hover { color: #1B4332 !important; }
+.breadcrumb__item--active { color: #2C1810 !important; font-weight: 500 !important; }
+
+/* ------------------------------------------------
+   12. MAIN PAGE / ARTICLE / BLOG
+   ------------------------------------------------ */
+.main-page-title { font-family: 'Playfair Display', serif !important; color: #0D2818 !important; }
+.article-card__title { font-family: 'Playfair Display', serif !important; color: #2C1810 !important; }
+.article-card__title a:hover { color: #1B4332 !important; }
+.article__title { font-family: 'Playfair Display', serif !important; }
+.article-card__info { color: #7C6B5E !important; font-family: 'Poppins', sans-serif !important; font-size: 1.3rem !important; }
+
+/* ------------------------------------------------
+   13. PRODUCT PAGE SPECIFIC
+   ------------------------------------------------ */
+.product__info-wrapper { background: #FDF8F0 !important; }
+.product__title { font-family: 'Playfair Display', serif !important; color: #0D2818 !important; }
+.product-form__submit {
+  background: linear-gradient(135deg, #1B4332, #40916C) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 1.5rem !important;
+  padding: 16px 32px !important;
+  letter-spacing: 0.04em !important;
+}
+.product-form__submit:hover {
+  background: linear-gradient(135deg, #40916C, #1B4332) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(27,67,50,0.3) !important;
+}
+/* Variant pills */
+.swatch__input:checked ~ .swatch__label,
+.swatch-input__input:checked + .swatch-input__label {
+  background: #1B4332 !important;
+  border-color: #1B4332 !important;
+  color: #fff !important;
+}
+.swatch__label,
+.swatch-input__label {
+  border-color: #E8DDD0 !important;
+  border-radius: 8px !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+  color: #2C1810 !important;
+}
+.swatch__label:hover,
+.swatch-input__label:hover { border-color: #1B4332 !important; color: #1B4332 !important; }
+
+/* Quantity selector */
+.quantity { border-color: #E8DDD0 !important; border-radius: 8px !important; background: #fff !important; }
+.quantity__button { color: #1B4332 !important; }
+.quantity__button:hover { background: #F5EDD8 !important; color: #1B4332 !important; }
+.quantity__input { font-family: 'Poppins', sans-serif !important; color: #2C1810 !important; background: #fff !important; }
+
+/* Collapsible content (Dawn's built-in accordion) */
+.accordion__title { font-family: 'Playfair Display', serif !important; color: #0D2818 !important; }
+details[open] .accordion__title { color: #1B4332 !important; }
+
+/* ------------------------------------------------
+   14. MEDIA QUERIES — Mobile Polish
+   ------------------------------------------------ */
+@media screen and (max-width: 749px) {
+  h1, .h0 { font-size: 3rem !important; }
+  h2, .h1 { font-size: 2.4rem !important; }
+  .card { border-radius: 10px !important; }
+  .product-form__submit { padding: 14px 24px !important; font-size: 1.4rem !important; }
+}
+
+/* ------------------------------------------------
+   15. SCROLLBAR STYLING
+   ------------------------------------------------ */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #F5EDD8; }
+::-webkit-scrollbar-thumb { background: #2D6A4F; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #1B4332; }
+
+/* ------------------------------------------------
+   16. SELECTION COLOUR
+   ------------------------------------------------ */
+::selection { background: #C8960C; color: #fff; }
+
+/* ------------------------------------------------
+   17. FOCUS RING — Accessibility
+   ------------------------------------------------ */
+*:focus-visible {
+  outline: 2px solid #C8960C !important;
+  outline-offset: 3px !important;
+}
+
+/* ------------------------------------------------
+   18. SECTION FEATURE COLLECTION HEADING
+   ------------------------------------------------ */
+.featured-collection .title,
+.featured-collection h2 {
+  font-family: 'Playfair Display', serif !important;
+  color: #0D2818 !important;
+}
+.featured-collection .link--text {
+  color: #1B4332 !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 600 !important;
+  border-bottom: 2px solid #C8960C !important;
+  padding-bottom: 2px !important;
+}
+
+/* ------------------------------------------------
+   19. NEWSLETTER SECTION
+   ------------------------------------------------ */
+.newsletter .section-heading,
+.newsletter h2 {
+  font-family: 'Playfair Display', serif !important;
+}
+.newsletter-form__button {
+  background: linear-gradient(135deg, #1B4332, #40916C) !important;
+  border-radius: 0 8px 8px 0 !important;
+}
+
+/* ------------------------------------------------
+   20. PAGE LOADING — subtle top progress bar
+   ------------------------------------------------ */
+.ch-progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #1B4332, #C8960C, #E67E22);
+  z-index: 9999;
+  animation: ch-progress 1.5s ease-out forwards;
+}
+@keyframes ch-progress {
+  0%   { width: 0; opacity: 1; }
+  80%  { width: 85%; opacity: 1; }
+  100% { width: 100%; opacity: 0; }
+}
+
+/* ------------------------------------------------
+   21. SMOOTH SECTION TRANSITIONS
+   ------------------------------------------------ */
+.shopify-section { transition: opacity 0.3s ease; }
+
+/* ------------------------------------------------
+   22. FOOTER — LOGO, BRAND, SOCIAL, LINKS
+   ------------------------------------------------ */
+
+/* Override footer background to forest green */
+.footer { background-color: #1B4332 !important; }
+.footer .footer-block { color: rgba(255,255,255,0.85); }
+
+/* Logo in footer */
+.ch-footer-brand { display: flex; flex-direction: column; gap: 12px; }
+.ch-footer-logo { margin-bottom: 4px; }
+.ch-footer-logo__img {
+  max-width: 160px;
+  height: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.95;
+}
+.ch-footer-logo--text span {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+/* Tagline & entity */
+.ch-footer-tagline {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.35rem;
+  color: rgba(255,255,255,0.75);
+  font-style: italic;
+  margin: 0;
+  line-height: 1.4;
+}
+.ch-footer-entity {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.45);
+  margin: 0;
+}
+
+/* Social icons row */
+.ch-footer-social {
+  display: flex;
+  gap: 12px;
+  margin-top: 6px;
+}
+.ch-footer-social a {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.75) !important;
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.ch-footer-social a:hover {
+  background: #C8960C !important;
+  border-color: #C8960C;
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+
+/* Footer block headings */
+.footer .footer-block__heading {
+  font-family: 'Playfair Display', serif !important;
+  font-size: 1.55rem !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+  margin-bottom: 16px !important;
+  padding-bottom: 10px !important;
+  border-bottom: 1px solid rgba(200,150,12,0.4) !important;
+  letter-spacing: 0.01em;
+}
+
+/* Footer text block links */
+.footer .footer-block__details-content p {
+  margin: 0 0 8px !important;
+  font-size: 1.35rem !important;
+  line-height: 1.5 !important;
+}
+.footer .footer-block__details-content a {
+  color: rgba(255,255,255,0.72) !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.35rem;
+}
+.footer .footer-block__details-content a:hover {
+  color: #C8960C !important;
+  padding-left: 4px;
+}
+.footer .footer-block__details-content i {
+  width: 18px;
+  color: #C8960C;
+  margin-right: 6px;
+  font-size: 1.3rem;
+}
+
+/* Payment icons */
+.footer .list-payment { gap: 8px; }
+.footer .list-payment .icon { filter: brightness(0) invert(1) opacity(0.5); }
+
+/* Footer bottom bar */
+.ch-footer-bottom-bar {
+  background: #0D2818;
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+.ch-footer-bottom-bar__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 16px;
+}
+.ch-footer-bottom-bar__links a {
+  color: rgba(255,255,255,0.6) !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.25rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.ch-footer-bottom-bar__links a:hover { color: #C8960C !important; }
+.ch-footer-bottom-bar__links span { color: rgba(255,255,255,0.2); font-size: 1.2rem; }
+.ch-footer-bottom-bar__copy {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.6;
+}
+.ch-footer-bottom-bar__copy em {
+  font-style: normal;
+  color: rgba(255,255,255,0.35);
+}
+@media (max-width: 749px) {
+  .ch-footer-bottom-bar { padding: 14px 16px; }
+  .ch-footer-bottom-bar__copy { font-size: 1.1rem; }
+}

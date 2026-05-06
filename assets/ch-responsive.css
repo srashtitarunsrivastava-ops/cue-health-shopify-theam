@@ -1,0 +1,482 @@
+/* ==============================================
+   CueHealth — Responsive Styles
+   Breakpoints:
+     xs:  < 480px   (small phones)
+     sm:  < 750px   (all phones)
+     md:  750–989px (tablets)
+     lg:  > 990px   (desktop — default)
+   ============================================== */
+
+/* ================================================
+   FLUID TYPOGRAPHY — scales with viewport
+   ================================================ */
+:root {
+  --ch-text-scale: clamp(0.9rem, 2vw, 1rem);
+}
+
+/* ================================================
+   1. HERO SECTION
+   ================================================ */
+@media screen and (max-width: 989px) {
+  .ch-hero__inner { max-width: 100%; padding: 0 28px; }
+  .ch-hero__heading { font-size: clamp(2.8rem, 6vw, 4.8rem) !important; }
+  .ch-hero__desc { font-size: 1.5rem; }
+}
+
+@media screen and (max-width: 749px) {
+  .ch-hero { min-height: 70vh; }
+  .ch-hero__content { padding: 48px 0 60px; }
+  .ch-hero__inner { padding: 0 20px; max-width: 100%; }
+  .ch-hero__eyebrow { font-size: 1.1rem; justify-content: center; }
+  .ch-hero__heading { font-size: clamp(2.4rem, 8vw, 3.6rem) !important; text-align: center; }
+  .ch-hero__desc { font-size: 1.45rem; text-align: center; max-width: 100%; }
+  .ch-hero__cta-group { justify-content: center; flex-direction: column; align-items: center; }
+  .ch-hero__btn { width: 100%; max-width: 300px; justify-content: center; }
+  .ch-hero__trust-strip { justify-content: center; }
+  .ch-hero__content--left .ch-hero__inner,
+  .ch-hero__content--right .ch-hero__inner { text-align: center; margin: 0 auto; }
+  .ch-hero__scroll-indicator { display: none; }
+}
+
+@media screen and (max-width: 480px) {
+  .ch-hero__heading { font-size: 2.6rem !important; }
+  .ch-hero__trust-strip { flex-direction: column; align-items: center; gap: 6px; }
+}
+
+/* ================================================
+   2. TRUST BADGES ROW
+   ================================================ */
+@media screen and (max-width: 749px) {
+  .ch-trust-badges__inner {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    justify-items: center;
+  }
+  .ch-trust-badges__divider { display: none; }
+  .ch-trust-badge { width: 100%; justify-content: center; }
+}
+
+@media screen and (max-width: 480px) {
+  .ch-trust-badges__inner { grid-template-columns: 1fr; gap: 10px; }
+}
+
+/* ================================================
+   3. FEATURED COLLECTION HEADING
+   ================================================ */
+@media screen and (max-width: 749px) {
+  .featured-collection .title { font-size: 2.4rem !important; text-align: center; }
+  .featured-collection .collection-description { text-align: center; }
+}
+
+/* ================================================
+   4. AYURVEDIC INGREDIENTS
+   ================================================ */
+.ch-ingredients__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+@media screen and (max-width: 989px) {
+  .ch-ingredients__grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .ch-ingredients__heading { font-size: 2.8rem; }
+  .ch-ingredients { padding: 56px 0; }
+}
+
+@media screen and (max-width: 749px) {
+  .ch-ingredients { padding: 44px 0; }
+  .ch-ingredients__inner { padding: 0 16px; }
+  .ch-ingredients__heading { font-size: 2.4rem; }
+  .ch-ingredients__subheading { font-size: 1.4rem; }
+  .ch-ingredients__grid { grid-template-columns: 1fr; gap: 16px; }
+  .ch-ingredient-card { padding: 24px 20px; }
+  .ch-ingredient-card__icon-wrap { width: 80px; height: 80px; font-size: 2.2rem; }
+  .ch-ingredient-card__name { font-size: 1.8rem; }
+}
+
+@media screen and (max-width: 480px) {
+  .ch-ingredients__grid { grid-template-columns: 1fr; }
+  .ch-ingredients__header { margin-bottom: 36px; }
+}
+
+/* ================================================
+   5. HOW IT WORKS
+   ================================================ */
+.ch-hiw__steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+
+@media screen and (max-width: 989px) {
+  .ch-hiw__steps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 24px;
+  }
+  .ch-hiw__steps::before { display: none; }
+  .ch-hiw { padding: 56px 0; }
+  .ch-hiw__heading { font-size: 2.8rem; }
+}
+
+@media screen and (max-width: 749px) {
+  .ch-hiw { padding: 44px 0; }
+  .ch-hiw__inner { padding: 0 16px; }
+  .ch-hiw__heading { font-size: 2.4rem; }
+  .ch-hiw__subheading { font-size: 1.4rem; }
+  .ch-hiw__steps { grid-template-columns: 1fr; gap: 32px; }
+  .ch-hiw__step-number { width: 80px; height: 80px; font-size: 2.6rem; margin-bottom: 20px; }
+  .ch-hiw__step-title { font-size: 1.7rem; }
+  .ch-hiw__step-desc { font-size: 1.35rem; }
+}
+
+/* ================================================
+   6. SHOP BY CONCERN
+   ================================================ */
+@media screen and (max-width: 989px) {
+  .ch-concerns__grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+}
+
+@media screen and (max-width: 749px) {
+  .ch-concerns { padding: 44px 0; }
+  .ch-concerns__inner { padding: 0 16px; }
+  .ch-concerns__heading { font-size: 2.4rem; }
+  .ch-concerns__grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .ch-concern-item__img-wrap { width: 90px; height: 90px; font-size: 2.2rem; }
+  .ch-concern-item__label { font-size: 1.3rem; }
+}
+
+@media screen and (max-width: 480px) {
+  .ch-concerns__grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .ch-concern-item__img-wrap { width: 76px; height: 76px; font-size: 2rem; }
+}
+
+/* ================================================
+   7. WHY CHOOSE US
+   ================================================ */
+@media screen and (max-width: 989px) {
+  .ch-why-us__grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
+
+@media screen and (max-width: 749px) {
+  .ch-why-us { padding: 44px 0; }
+  .ch-why-us__inner { padding: 0 16px; }
+  .ch-why-us__heading { font-size: 2.4rem; }
+  .ch-why-us__grid { grid-template-columns: 1fr; gap: 16px; }
+  .ch-why-us__item { padding: 24px 20px; display: flex; flex-direction: row; gap: 16px; text-align: left; }
+  .ch-why-us__icon-wrap { width: 52px; height: 52px; margin: 0; flex-shrink: 0; }
+  .ch-why-us__item-title { font-size: 1.6rem; }
+  .ch-why-us__item-desc { font-size: 1.35rem; }
+}
+
+/* ================================================
+   8. EXPERT CONSULTATION BANNER
+   ================================================ */
+@media screen and (max-width: 989px) {
+  .ch-expert { padding: 60px 32px; }
+  .ch-expert__heading { font-size: 3rem; }
+}
+
+@media screen and (max-width: 749px) {
+  .ch-expert { padding: 48px 20px; }
+  .ch-expert__heading { font-size: 2.6rem !important; }
+  .ch-expert__desc { font-size: 1.45rem; }
+  .ch-expert__cta-group { flex-direction: column; align-items: center; gap: 12px; }
+  .ch-expert__btn-wa,
+  .ch-expert__btn-learn { width: 100%; max-width: 320px; justify-content: center; }
+  .ch-expert__trust {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .ch-expert__icon { width: 64px; height: 64px; font-size: 2rem; }
+}
+
+/* ================================================
+   9. TESTIMONIALS
+   ================================================ */
+@media screen and (max-width: 749px) {
+  .ch-testimonials { padding: 44px 0; }
+  .ch-testimonials__inner { padding: 0 16px; }
+  .ch-testimonials__heading { font-size: 2.4rem; }
+  .ch-testimonials__card { min-width: calc(100vw - 48px); padding: 24px 20px; }
+  .ch-testimonials__summary { flex-direction: column; gap: 8px; }
+}
+
+/* ================================================
+   10. PAGE HERO (static pages)
+   ================================================ */
+@media screen and (max-width: 749px) {
+  .ch-page-hero { padding: 44px 20px; }
+  .ch-page-hero__heading { font-size: 2.8rem; }
+  .ch-page-hero__sub { font-size: 1.45rem; }
+}
+
+@media screen and (max-width: 480px) {
+  .ch-page-hero__heading { font-size: 2.4rem; }
+}
+
+/* ================================================
+   11. ABOUT US PAGE
+   ================================================ */
+@media screen and (max-width: 989px) {
+  .ch-about-story__inner { grid-template-columns: 1fr; gap: 32px; }
+  .ch-about-values__grid { grid-template-columns: repeat(2, 1fr); }
+  .ch-about-team__grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .ch-about-legal__grid { grid-template-columns: 1fr; }
+}
+
+@media screen and (max-width: 749px) {
+  .ch-about-story { padding: 40px 0; }
+  .ch-about-story__inner { padding: 0 16px; }
+  .ch-about-story__text h2 { font-size: 2.4rem; }
+  .ch-about-story__img { height: 260px; }
+  .ch-about-story__stats { flex-direction: row; }
+  .ch-about-mission { padding: 40px 0; }
+  .ch-about-mission__card { padding: 32px 20px; }
+  .ch-about-values { padding: 40px 0; }
+  .ch-about-values__grid { grid-template-columns: 1fr; gap: 16px; }
+  .ch-about-team { padding: 40px 0; }
+  .ch-about-team__grid { grid-template-columns: 1fr; }
+  .ch-about-legal { padding: 32px 0; }
+  .ch-about-cta { padding: 40px 0; }
+  .ch-about-cta h2 { font-size: 2.4rem; }
+  .ch-hero__cta-group.about-cta { flex-direction: column; align-items: center; }
+}
+
+/* ================================================
+   12. CONTACT PAGE
+   ================================================ */
+@media screen and (max-width: 989px) {
+  .ch-contact-wrapper { grid-template-columns: 1fr; gap: 40px; padding: 40px 20px 60px; }
+  .ch-form-row { grid-template-columns: 1fr; gap: 0; }
+}
+
+@media screen and (max-width: 749px) {
+  .ch-contact-wrapper { padding: 32px 16px 48px; gap: 32px; }
+  .ch-contact-details h2,
+  .ch-contact-form h2 { font-size: 2.2rem; }
+  .ch-whatsapp-cta-btn { font-size: 1.4rem; padding: 12px 20px; }
+  .ch-form-submit { font-size: 1.45rem; padding: 14px 24px; }
+}
+
+/* ================================================
+   13. POLICY PAGES
+   ================================================ */
+@media screen and (max-width: 749px) {
+  .ch-policy-wrapper { padding: 32px 16px 48px; }
+  .ch-policy-content h2 { font-size: 1.8rem; }
+  .ch-policy-highlight { flex-direction: column; gap: 12px; }
+  .ch-policy-table { font-size: 1.3rem; }
+  .ch-policy-table th, .ch-policy-table td { padding: 10px 12px; }
+  .ch-policy-contact-bar { flex-direction: column; text-align: center; }
+  .ch-policy-contact-bar > div { justify-content: center; }
+}
+
+/* ================================================
+   14. PRODUCT PAGE
+   ================================================ */
+@media screen and (max-width: 989px) {
+  .ch-pdp-breadcrumb { flex-direction: column; align-items: flex-start; gap: 8px; padding: 10px 0 0; }
+  .ch-pdp-social-proof { align-self: flex-start; }
+}
+
+@media screen and (max-width: 749px) {
+  .ch-pdp-title { font-size: 2.4rem !important; }
+  .ch-pdp-rating-row { gap: 8px; }
+  .ch-pdp-trust { flex-wrap: wrap; }
+  .ch-pdp-trust__badge { min-width: 30%; flex: 1; }
+  .ch-pdp-delivery { padding: 12px 14px; }
+  .ch-pdp-delivery__row { font-size: 1.3rem; }
+  .ch-pdp-wa-cta { font-size: 1.35rem; padding: 10px 14px; }
+  .ch-pdp-accordion { margin-top: 20px; }
+  .ch-pdp-acc__trigger { font-size: 1.4rem; padding: 15px 0; }
+  .ch-sticky-atc { padding: 10px 16px; }
+  .ch-sticky-atc__btn { padding: 10px 20px; font-size: 1.35rem; }
+}
+
+@media screen and (max-width: 480px) {
+  .ch-pdp-trust { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .ch-pdp-trust__badge { border-right: none; border-bottom: 1px solid var(--ch-border); }
+  .ch-pdp-badges { font-size: 1.1rem; }
+}
+
+/* ================================================
+   15. FOOTER
+   ================================================ */
+@media screen and (max-width: 989px) {
+  .footer .footer__blocks-wrapper {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 36px !important;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .footer .footer__blocks-wrapper {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .footer { padding-top: 40px !important; }
+  .ch-footer-logo__img { max-width: 130px; }
+  .ch-footer-brand { align-items: flex-start; }
+  .ch-footer-bottom-bar { padding: 14px 16px; }
+  .ch-footer-bottom-bar__links { gap: 6px 12px; }
+  .ch-footer-bottom-bar__copy { font-size: 1.1rem; line-height: 1.8; }
+}
+
+/* ================================================
+   16. HEADER / NAVIGATION
+   ================================================ */
+@media screen and (max-width: 989px) {
+  .header__heading-logo { max-width: 120px !important; }
+}
+
+@media screen and (max-width: 749px) {
+  .header__heading-logo { max-width: 100px !important; }
+  .header { padding: 0 16px !important; }
+}
+
+/* ================================================
+   17. GLOBAL SECTION HEADINGS — mobile scale
+   ================================================ */
+@media screen and (max-width: 749px) {
+  .ch-why-us__heading,
+  .ch-testimonials__heading,
+  .ch-concerns__heading,
+  .ch-ingredients__heading,
+  .ch-hiw__heading,
+  .ch-expert__heading {
+    font-size: 2.4rem !important;
+    margin-bottom: 6px !important;
+  }
+  .ch-why-us__subheading,
+  .ch-testimonials__subheading,
+  .ch-concerns__subheading,
+  .ch-ingredients__subheading,
+  .ch-hiw__subheading { font-size: 1.4rem !important; margin-bottom: 32px !important; }
+}
+
+/* ================================================
+   18. GLOBAL PADDING — tighter on mobile
+   ================================================ */
+@media screen and (max-width: 749px) {
+  .ch-why-us,
+  .ch-testimonials,
+  .ch-concerns,
+  .ch-ingredients,
+  .ch-hiw { padding: 44px 0 !important; }
+
+  .ch-why-us__inner,
+  .ch-testimonials__inner,
+  .ch-concerns__inner,
+  .ch-ingredients__inner,
+  .ch-hiw__inner { padding: 0 16px !important; }
+
+  section.ch-expert { padding: 44px 16px !important; }
+}
+
+/* ================================================
+   19. BUTTON FULL-WIDTH on small phones
+   ================================================ */
+@media screen and (max-width: 480px) {
+  .product-form__submit { font-size: 1.4rem !important; padding: 14px 20px !important; }
+  .button { font-size: 1.4rem !important; }
+}
+
+/* ================================================
+   20. CARD GRID — mobile 1 col
+   ================================================ */
+@media screen and (max-width: 480px) {
+  .card-wrapper { width: 100%; }
+}
+
+/* ================================================
+   21. TAP TARGET SIZE — accessibility
+   ================================================ */
+@media screen and (max-width: 749px) {
+  a, button, [role="button"] { min-height: 44px; }
+  .ch-testimonials__btn { width: 44px; height: 44px; }
+  .ch-pdp-acc__trigger { min-height: 52px; }
+}
+
+/* ================================================
+   22. ANNOUNCEMENT BAR — single line mobile
+   ================================================ */
+@media screen and (max-width: 749px) {
+  .announcement-bar__message { font-size: 1.2rem !important; }
+  .utility-bar { padding: 8px 16px !important; }
+}
+
+/* ================================================
+   23. SEARCH MODAL — full width on mobile
+   ================================================ */
+@media screen and (max-width: 749px) {
+  .search-modal__form-input { font-size: 1.6rem !important; }
+  .predictive-search { max-height: 70vh; overflow-y: auto; }
+}
+
+/* ================================================
+   24. CART — full width on mobile
+   ================================================ */
+@media screen and (max-width: 749px) {
+  .cart-drawer { width: 100% !important; max-width: 100% !important; }
+}
+
+/* ================================================
+   25. COLLECTION PAGE — mobile filter
+   ================================================ */
+@media screen and (max-width: 749px) {
+  .facets-vertical .product-grid { width: 100%; }
+  .facets__form { padding: 0 16px; }
+  .collection .title { font-size: 2.4rem !important; text-align: center; }
+}
+
+/* ================================================
+   26. BREADCRUMB — truncate on mobile
+   ================================================ */
+@media screen and (max-width: 749px) {
+  .ch-breadcrumb li:not(:last-child):not(:first-child) { display: none; }
+  .ch-breadcrumb li:first-child::after { content: '...'; margin: 0 8px; }
+  .ch-pdp-breadcrumb { padding: 10px 0 0; }
+}
+
+/* ================================================
+   27. WHY CHOOSE US — horizontal card on mobile
+   ================================================ */
+@media screen and (max-width: 749px) {
+  .ch-why-us__item { border-bottom: none; border-left: 3px solid var(--ch-gold); }
+  .ch-why-us__item:hover { transform: translateX(4px); }
+}
+
+/* ================================================
+   28. HOW IT WORKS — numbered steps on mobile
+   ================================================ */
+@media screen and (max-width: 749px) {
+  .ch-hiw__step { display: flex; flex-direction: row; gap: 20px; text-align: left; padding: 0 0 0 8px; }
+  .ch-hiw__step-number { width: 64px; height: 64px; font-size: 2rem; flex-shrink: 0; margin: 0; }
+  .ch-hiw__step-title { font-size: 1.6rem; margin-bottom: 6px; }
+}
+
+/* ================================================
+   29. INGREDIENT CARDS — horizontal on tablet
+   ================================================ */
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .ch-ingredient-card { display: flex; flex-direction: row; gap: 20px; text-align: left; align-items: flex-start; }
+  .ch-ingredient-card__icon-wrap { flex-shrink: 0; margin: 0; }
+  .ch-ingredient-card__name { margin-top: 0; }
+}
+
+/* ================================================
+   30. PRINT — hide decorative elements
+   ================================================ */
+@media print {
+  .ch-hero__bg-orb,
+  .ch-hero__bg-pattern,
+  .ch-sticky-atc,
+  .ch-pdp-social-proof,
+  .header,
+  .footer { display: none !important; }
+  body { background: white !important; color: black !important; }
+  a { color: black !important; text-decoration: underline !important; }
+}

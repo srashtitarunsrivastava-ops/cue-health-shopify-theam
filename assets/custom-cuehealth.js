@@ -165,23 +165,48 @@
   }
 
   /* =========================================
-     PRODUCT ACCORDION TABS
+     PRODUCT ACCORDION (new ch-pdp-accordion)
      ========================================= */
   function initProductTabs() {
-    var triggers = document.querySelectorAll('.ch-product-tab__trigger');
+    var triggers = document.querySelectorAll('.ch-pdp-acc__trigger');
     triggers.forEach(function (trigger) {
       trigger.addEventListener('click', function () {
-        var tab = this.closest('.ch-product-tab');
-        var isOpen = tab.classList.contains('open');
-        document.querySelectorAll('.ch-product-tab').forEach(function (t) {
-          t.classList.remove('open');
+        var item    = this.closest('.ch-pdp-acc__item');
+        var body    = item.querySelector('.ch-pdp-acc__body');
+        var isOpen  = !body.hidden;
+
+        /* Close all */
+        document.querySelectorAll('.ch-pdp-acc__item').forEach(function (el) {
+          el.removeAttribute('data-open');
+          el.classList.remove('ch-pdp-acc__item--open');
+          el.querySelector('.ch-pdp-acc__trigger').setAttribute('aria-expanded', 'false');
+          el.querySelector('.ch-pdp-acc__body').hidden = true;
         });
-        if (!isOpen) tab.classList.add('open');
+
+        /* Open clicked unless it was already open */
+        if (!isOpen) {
+          item.setAttribute('data-open', '');
+          item.classList.add('ch-pdp-acc__item--open');
+          trigger.setAttribute('aria-expanded', 'true');
+          body.hidden = false;
+        }
       });
     });
+  }
 
-    var firstTab = document.querySelector('.ch-product-tab');
-    if (firstTab) firstTab.classList.add('open');
+  /* =========================================
+     SOCIAL PROOF COUNTER
+     ========================================= */
+  function initSocialProof() {
+    var el = document.getElementById('ch-viewer-count');
+    if (!el) return;
+    var base = Math.floor(Math.random() * 18) + 12; /* 12–29 */
+    el.textContent = base;
+    setInterval(function () {
+      var delta = Math.random() > 0.5 ? 1 : -1;
+      base = Math.max(8, Math.min(40, base + delta));
+      el.textContent = base;
+    }, 7000);
   }
 
   /* =========================================
@@ -209,6 +234,7 @@
     initStickyATC();
     initTestimonialsCarousel();
     initProductTabs();
+    initSocialProof();
     applyDiscountFromUrl();
   });
 })();

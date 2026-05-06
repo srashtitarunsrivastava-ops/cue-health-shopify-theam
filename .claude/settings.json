@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(shopify version *)",
+      "Bash(npm --version)",
+      "Bash(shopify theme *)",
+      "Bash(pkill -f \"shopify theme dev\")",
+      "Bash(fuser -k 9292/tcp)",
+      "PowerShell($proc = Get-NetTCPConnection -LocalPort 9292 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -First 1; if \\($proc\\) { Stop-Process -Id $proc -Force; Write-Output \"Killed PID $proc\" } else { Write-Output \"No process on 9292\" })"
+    ]
+  }
+}

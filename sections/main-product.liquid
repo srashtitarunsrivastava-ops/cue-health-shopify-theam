@@ -73,6 +73,27 @@
   {%- endif -%}
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
+
+  <!-- Breadcrumb -->
+  <div class="ch-pdp-breadcrumb page-width">
+    <nav aria-label="breadcrumb">
+      <ol class="ch-breadcrumb">
+        <li><a href="/">Home</a></li>
+        {%- if collection -%}
+          <li><a href="{{ collection.url }}">{{ collection.title }}</a></li>
+        {%- elsif product.collections.first -%}
+          <li><a href="{{ product.collections.first.url }}">{{ product.collections.first.title }}</a></li>
+        {%- endif -%}
+        <li aria-current="page">{{ product.title | truncate: 40 }}</li>
+      </ol>
+    </nav>
+    <!-- Social proof -->
+    <div class="ch-pdp-social-proof" id="ch-social-proof" aria-live="polite">
+      <span class="ch-pdp-pulse" aria-hidden="true"></span>
+      <span id="ch-viewer-count">24</span> people viewing this right now
+    </div>
+  </div>
+
   <div class="page-width">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
       <div class="grid__item product__media-wrapper">
@@ -97,13 +118,33 @@
                   {{- block.settings.text -}}
                 </p>
               {%- when 'title' -%}
-                <div class="product__title" {{ block.shopify_attributes }}>
-                  <h1>{{ product.title | escape }}</h1>
-                  <a href="{{ product.url }}" class="product__title">
-                    <h2 class="h1">
-                      {{ product.title | escape }}
-                    </h2>
-                  </a>
+                <div class="ch-pdp-title-block" {{ block.shopify_attributes }}>
+                  <!-- Ayurvedic badges row -->
+                  <div class="ch-pdp-badges">
+                    {%- render 'ch-icon', icon: 'leaf', size: 13 -%}
+                    <span>100% Ayurvedic</span>
+                    {%- if product.metafields.custom.badge != blank -%}
+                      <span class="ch-pdp-badge-sep">·</span>
+                      <span>{{ product.metafields.custom.badge.value }}</span>
+                    {%- endif -%}
+                    {%- if product.tags contains 'bestseller' or product.tags contains 'Bestseller' -%}
+                      <span class="ch-pdp-badge-sep">·</span>
+                      {%- render 'ch-icon', icon: 'star-filled', size: 12 -%}
+                      <span>Bestseller</span>
+                    {%- endif -%}
+                  </div>
+                  <!-- Product title -->
+                  <h1 class="ch-pdp-title">{{ product.title | escape }}</h1>
+                  <!-- Star rating placeholder -->
+                  <div class="ch-pdp-rating-row">
+                    <div class="ch-pdp-stars" aria-label="4.8 out of 5 stars">
+                      {%- for i in (1..5) -%}
+                        {%- render 'ch-icon', icon: 'star-filled', size: 16 -%}
+                      {%- endfor -%}
+                    </div>
+                    <span class="ch-pdp-rating-text">4.8 <span>(142 reviews)</span></span>
+                    <a href="#ch-reviews" class="ch-pdp-rating-link">Read reviews</a>
+                  </div>
                 </div>
               {%- when 'price' -%}
                 <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
@@ -485,24 +526,64 @@
                   section_id: section.id,
                   show_pickup_availability: true
                 -%}
-                <div class="ch-product-trust">
-                  <span class="ch-product-trust__badge">
-                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                    FSSAI Approved
-                  </span>
-                  <span class="ch-product-trust__badge">
-                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                    Lab Tested
-                  </span>
-                  <span class="ch-product-trust__badge">
-                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                    Free Shipping ₹499+
-                  </span>
-                  <span class="ch-product-trust__badge">
-                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                    Secure Payment
-                  </span>
+
+                <!-- Delivery info strip -->
+                <div class="ch-pdp-delivery">
+                  <div class="ch-pdp-delivery__row">
+                    {%- render 'ch-icon', icon: 'truck', size: 16 -%}
+                    <div>
+                      <strong>Free Delivery</strong> on orders above ₹499
+                    </div>
+                  </div>
+                  <div class="ch-pdp-delivery__row">
+                    {%- render 'ch-icon', icon: 'clock', size: 16 -%}
+                    <div>
+                      <strong>Estimated Delivery:</strong> 3–7 working days
+                    </div>
+                  </div>
+                  <div class="ch-pdp-delivery__row">
+                    {%- render 'ch-icon', icon: 'return', size: 16 -%}
+                    <div>
+                      <strong>7-Day</strong> hassle-free returns
+                    </div>
+                  </div>
                 </div>
+
+                <!-- Trust badges — full row -->
+                <div class="ch-pdp-trust">
+                  <div class="ch-pdp-trust__badge">
+                    <div class="ch-pdp-trust__icon">{%- render 'ch-icon', icon: 'shield', size: 18 -%}</div>
+                    <span>FSSAI<br>Approved</span>
+                  </div>
+                  <div class="ch-pdp-trust__badge">
+                    <div class="ch-pdp-trust__icon">{%- render 'ch-icon', icon: 'flask', size: 18 -%}</div>
+                    <span>Lab<br>Tested</span>
+                  </div>
+                  <div class="ch-pdp-trust__badge">
+                    <div class="ch-pdp-trust__icon">{%- render 'ch-icon', icon: 'leaf', size: 18 -%}</div>
+                    <span>100%<br>Ayurvedic</span>
+                  </div>
+                  <div class="ch-pdp-trust__badge">
+                    <div class="ch-pdp-trust__icon">{%- render 'ch-icon', icon: 'lock', size: 18 -%}</div>
+                    <span>Secure<br>Payment</span>
+                  </div>
+                  <div class="ch-pdp-trust__badge">
+                    <div class="ch-pdp-trust__icon">{%- render 'ch-icon', icon: 'check-circle', size: 18 -%}</div>
+                    <span>GMP<br>Certified</span>
+                  </div>
+                </div>
+
+                <!-- WhatsApp consultation CTA -->
+                <a
+                  href="https://wa.me/917455918832?text={{ 'Hi! I have a question about ' | append: product.title | url_encode }}"
+                  target="_blank"
+                  rel="noopener"
+                  class="ch-pdp-wa-cta"
+                >
+                  {%- render 'ch-icon', icon: 'whatsapp', size: 18 -%}
+                  Have questions? Ask our Ayurvedic expert free
+                  {%- render 'ch-icon', icon: 'arrow-right', size: 14 -%}
+                </a>
               {%- when 'rating' -%}
                 {%- if product.metafields.reviews.rating.value != blank -%}
                   <div class="rating-wrapper">
@@ -695,53 +776,142 @@
             {%- endcase -%}
           {%- endfor -%}
 
-          <!-- CueHealth: Product info accordion tabs -->
-          <div class="ch-product-tabs">
-            <div class="ch-product-tab">
-              <button class="ch-product-tab__trigger" type="button">
-                Description
-                <span class="ch-product-tab__icon">+</span>
+          <!-- CueHealth: Ayurvedic Product Accordion -->
+          <div class="ch-pdp-accordion" id="ch-reviews">
+
+            <!-- About this product -->
+            <div class="ch-pdp-acc__item ch-pdp-acc__item--open">
+              <button class="ch-pdp-acc__trigger" type="button" aria-expanded="true">
+                <span class="ch-pdp-acc__trigger-left">
+                  {%- render 'ch-icon', icon: 'leaf', size: 18 -%}
+                  About this Product
+                </span>
+                <span class="ch-pdp-acc__chevron">{%- render 'ch-icon', icon: 'plus', size: 18 -%}</span>
               </button>
-              <div class="ch-product-tab__body">
-                {{ product.description }}
+              <div class="ch-pdp-acc__body">
+                <div class="rte ch-pdp-acc__rte">{{ product.description }}</div>
               </div>
             </div>
 
+            <!-- Ingredients -->
             {%- if product.metafields.custom.ingredients != blank -%}
-              <div class="ch-product-tab">
-                <button class="ch-product-tab__trigger" type="button">
-                  Ingredients
-                  <span class="ch-product-tab__icon">+</span>
+              <div class="ch-pdp-acc__item">
+                <button class="ch-pdp-acc__trigger" type="button" aria-expanded="false">
+                  <span class="ch-pdp-acc__trigger-left">
+                    {%- render 'ch-icon', icon: 'flask', size: 18 -%}
+                    Ingredients
+                  </span>
+                  <span class="ch-pdp-acc__chevron">{%- render 'ch-icon', icon: 'plus', size: 18 -%}</span>
                 </button>
-                <div class="ch-product-tab__body">
-                  {{ product.metafields.custom.ingredients.value }}
+                <div class="ch-pdp-acc__body" hidden>
+                  <div class="rte ch-pdp-acc__rte">{{ product.metafields.custom.ingredients.value }}</div>
+                </div>
+              </div>
+            {%- else -%}
+              <div class="ch-pdp-acc__item">
+                <button class="ch-pdp-acc__trigger" type="button" aria-expanded="false">
+                  <span class="ch-pdp-acc__trigger-left">
+                    {%- render 'ch-icon', icon: 'flask', size: 18 -%}
+                    Ingredients
+                  </span>
+                  <span class="ch-pdp-acc__chevron">{%- render 'ch-icon', icon: 'plus', size: 18 -%}</span>
+                </button>
+                <div class="ch-pdp-acc__body" hidden>
+                  <p class="ch-pdp-acc__placeholder">Ingredient details will be available shortly. Contact us for more information.</p>
                 </div>
               </div>
             {%- endif -%}
 
-            {%- if product.metafields.custom.how_to_use != blank -%}
-              <div class="ch-product-tab">
-                <button class="ch-product-tab__trigger" type="button">
+            <!-- How to Use -->
+            <div class="ch-pdp-acc__item">
+              <button class="ch-pdp-acc__trigger" type="button" aria-expanded="false">
+                <span class="ch-pdp-acc__trigger-left">
+                  {%- render 'ch-icon', icon: 'clock', size: 18 -%}
                   How to Use
-                  <span class="ch-product-tab__icon">+</span>
-                </button>
-                <div class="ch-product-tab__body">
-                  {{ product.metafields.custom.how_to_use.value }}
-                </div>
+                </span>
+                <span class="ch-pdp-acc__chevron">{%- render 'ch-icon', icon: 'plus', size: 18 -%}</span>
+              </button>
+              <div class="ch-pdp-acc__body" hidden>
+                {%- if product.metafields.custom.how_to_use != blank -%}
+                  <div class="rte ch-pdp-acc__rte">{{ product.metafields.custom.how_to_use.value }}</div>
+                {%- else -%}
+                  <div class="ch-pdp-acc__how-to">
+                    <div class="ch-pdp-htu-step">
+                      <div class="ch-pdp-htu-num">1</div>
+                      <p>Take as directed on the label, ideally with warm water or milk.</p>
+                    </div>
+                    <div class="ch-pdp-htu-step">
+                      <div class="ch-pdp-htu-num">2</div>
+                      <p>For best results, use consistently for a minimum of 4–8 weeks.</p>
+                    </div>
+                    <div class="ch-pdp-htu-step">
+                      <div class="ch-pdp-htu-num">3</div>
+                      <p>Store in a cool, dry place away from direct sunlight.</p>
+                    </div>
+                  </div>
+                {%- endif -%}
               </div>
-            {%- endif -%}
+            </div>
 
-            {%- if product.metafields.custom.faq != blank -%}
-              <div class="ch-product-tab">
-                <button class="ch-product-tab__trigger" type="button">
-                  FAQs
-                  <span class="ch-product-tab__icon">+</span>
-                </button>
-                <div class="ch-product-tab__body">
-                  {{ product.metafields.custom.faq.value }}
-                </div>
+            <!-- Clinical Evidence -->
+            <div class="ch-pdp-acc__item">
+              <button class="ch-pdp-acc__trigger" type="button" aria-expanded="false">
+                <span class="ch-pdp-acc__trigger-left">
+                  {%- render 'ch-icon', icon: 'microscope', size: 18 -%}
+                  Clinical Evidence
+                </span>
+                <span class="ch-pdp-acc__chevron">{%- render 'ch-icon', icon: 'plus', size: 18 -%}</span>
+              </button>
+              <div class="ch-pdp-acc__body" hidden>
+                {%- if product.metafields.custom.clinical_evidence != blank -%}
+                  <div class="rte ch-pdp-acc__rte">{{ product.metafields.custom.clinical_evidence.value }}</div>
+                {%- else -%}
+                  <div class="ch-pdp-acc__evidence">
+                    <div class="ch-pdp-acc__evidence-badge">
+                      {%- render 'ch-icon', icon: 'check-circle', size: 20 -%}
+                      Third-Party Lab Tested
+                    </div>
+                    <p>All CueHealth products are manufactured in FSSAI-licensed, GMP-certified facilities. Each batch undergoes independent third-party testing for heavy metals, microbial contamination, potency, and purity before release.</p>
+                  </div>
+                {%- endif -%}
               </div>
-            {%- endif -%}
+            </div>
+
+            <!-- FAQs -->
+            <div class="ch-pdp-acc__item">
+              <button class="ch-pdp-acc__trigger" type="button" aria-expanded="false">
+                <span class="ch-pdp-acc__trigger-left">
+                  {%- render 'ch-icon', icon: 'whatsapp', size: 18 -%}
+                  FAQs
+                </span>
+                <span class="ch-pdp-acc__chevron">{%- render 'ch-icon', icon: 'plus', size: 18 -%}</span>
+              </button>
+              <div class="ch-pdp-acc__body" hidden>
+                {%- if product.metafields.custom.faq != blank -%}
+                  <div class="rte ch-pdp-acc__rte">{{ product.metafields.custom.faq.value }}</div>
+                {%- else -%}
+                  <div class="ch-pdp-acc__faq-list">
+                    <div class="ch-pdp-acc__faq">
+                      <strong>Is this product safe to take daily?</strong>
+                      <p>Yes, all CueHealth supplements are formulated for daily use. However, consult your healthcare provider if you are pregnant, breastfeeding, or on medication.</p>
+                    </div>
+                    <div class="ch-pdp-acc__faq">
+                      <strong>How long before I see results?</strong>
+                      <p>Ayurvedic supplements work holistically. Most customers notice improvements within 2–4 weeks of consistent use. Optimal benefits are typically seen after 8–12 weeks.</p>
+                    </div>
+                    <div class="ch-pdp-acc__faq">
+                      <strong>Is this FSSAI approved?</strong>
+                      <p>Yes, CueHealth products are manufactured in FSSAI-licensed facilities and comply with all applicable food safety regulations in India.</p>
+                    </div>
+                    <div class="ch-pdp-acc__faq">
+                      <strong>What is the return policy?</strong>
+                      <p>We offer a 7-day hassle-free return policy. If you're not satisfied, contact us at hello@cuehealth.in or WhatsApp 7455918832.</p>
+                    </div>
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+
           </div>
 
           <a href="{{ product.url }}" class="link product__view-details animate-arrow">

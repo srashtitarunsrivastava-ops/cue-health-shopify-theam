@@ -1,22 +1,82 @@
 {{ 'custom-cuehealth.css' | asset_url | stylesheet_tag }}
 
+{%- liquid
+  assign has_image  = false
+  assign has_video  = false
+  assign has_yt     = false
+
+  if section.settings.image != blank
+    assign has_image = true
+  endif
+
+  if section.settings.video != blank
+    assign has_video = true
+  endif
+
+  if section.settings.youtube_url != blank
+    assign yt_url = section.settings.youtube_url
+    if yt_url contains 'v='
+      assign yt_id = yt_url | split: 'v=' | last | split: '&' | first
+    elsif yt_url contains 'youtu.be/'
+      assign yt_id = yt_url | split: 'youtu.be/' | last | split: '?' | first
+    endif
+    if yt_id != blank
+      assign has_yt = true
+    endif
+  endif
+-%}
+
 {%- style -%}
   .ch-hero-{{ section.id }} {
     min-height: {{ section.settings.min_height_mobile }}vh;
-    background-color: {{ section.settings.fallback_bg_color }};
   }
   @media screen and (min-width: 750px) {
-    .ch-hero-{{ section.id }} {
-      min-height: {{ section.settings.min_height }}vh;
-    }
+    .ch-hero-{{ section.id }} { min-height: {{ section.settings.min_height }}vh; }
   }
   .ch-hero-{{ section.id }} .ch-hero__overlay {
-    background: rgba(0,0,0,{{ section.settings.overlay_opacity | divided_by: 100.0 }});
+    background: linear-gradient(
+      {{ section.settings.overlay_direction }},
+      rgba(0,0,0,{{ section.settings.overlay_opacity | divided_by: 100.0 }}) 0%,
+      rgba(0,0,0,{{ section.settings.overlay_opacity | times: 0.4 | divided_by: 100.0 }}) 60%,
+      rgba(0,0,0,0.05) 100%
+    );
   }
 {%- endstyle -%}
 
-<section class="ch-hero ch-hero-{{ section.id }}" aria-label="{{ section.settings.heading | escape }}">
-  {%- if section.settings.image != blank -%}
+<section
+  class="ch-hero ch-hero-{{ section.id }}{% unless has_image or has_video or has_yt %} ch-hero--animated-bg{% endunless %}"
+  aria-label="{{ section.settings.heading | strip_html | escape }}"
+>
+  <!-- Background layer -->
+  {%- if has_yt -%}
+    <div class="ch-hero__media ch-hero__media--video">
+      <iframe
+        class="ch-hero__yt-iframe"
+        src="https://www.youtube-nocookie.com/embed/{{ yt_id }}?autoplay=1&mute=1&loop=1&playlist={{ yt_id }}&controls=0&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&playsinline=1"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+        frameborder="0"
+        title="Hero background video"
+        loading="lazy"
+      ></iframe>
+    </div>
+
+  {%- elsif has_video -%}
+    <div class="ch-hero__media ch-hero__media--video">
+      {{
+        section.settings.video
+        | video_tag:
+          image_size: '1100x',
+          autoplay: true,
+          loop: true,
+          controls: false,
+          muted: true,
+          playsinline: true,
+          class: 'ch-hero__video-tag'
+      }}
+    </div>
+
+  {%- elsif has_image -%}
     <div class="ch-hero__media">
       {{
         section.settings.image
@@ -29,62 +89,80 @@
           class: 'ch-hero__img'
       }}
     </div>
-  {%- elsif section.settings.mobile_image != blank -%}
-    <div class="ch-hero__media">
-      {{
-        section.settings.mobile_image
-        | image_url: width: 800
-        | image_tag:
-          loading: 'eager',
-          fetchpriority: 'high',
-          class: 'ch-hero__img'
-      }}
-    </div>
+
   {%- else -%}
-    <div class="ch-hero__media ch-hero__media--placeholder"></div>
+    <!-- Animated gradient fallback — no upload needed -->
+    <div class="ch-hero__media ch-hero__media--animated-bg">
+      <div class="ch-hero__bg-orb ch-hero__bg-orb--1"></div>
+      <div class="ch-hero__bg-orb ch-hero__bg-orb--2"></div>
+      <div class="ch-hero__bg-orb ch-hero__bg-orb--3"></div>
+      <svg class="ch-hero__bg-pattern" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <pattern id="ch-grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M40 0L0 0 0 40" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="800" height="600" fill="url(#ch-grid)"/>
+        <circle cx="100" cy="500" r="120" fill="rgba(64,145,108,0.15)"/>
+        <circle cx="700" cy="100" r="180" fill="rgba(45,106,79,0.12)"/>
+        <path d="M400,50 C500,150 600,100 650,200 S700,350 600,400 S400,500 300,450 S100,350 150,250 S250,50 400,50Z" fill="rgba(110,231,183,0.06)"/>
+      </svg>
+    </div>
   {%- endif -%}
 
   <div class="ch-hero__overlay"></div>
 
+  <!-- Content -->
   <div class="ch-hero__content ch-hero__content--{{ section.settings.content_position }}">
     <div class="ch-hero__inner">
-      {%- if section.settings.subheading != blank -%}
-        <p class="ch-hero__eyebrow">{{ section.settings.subheading | escape }}</p>
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="ch-hero__eyebrow">
+          {%- render 'ch-icon', icon: 'leaf', size: 14 -%}
+          {{ section.settings.eyebrow | escape }}
+        </p>
       {%- endif -%}
+
       {%- if section.settings.heading != blank -%}
         <h1 class="ch-hero__heading">{{ section.settings.heading }}</h1>
       {%- endif -%}
+
       {%- if section.settings.description != blank -%}
         <p class="ch-hero__desc">{{ section.settings.description | escape }}</p>
       {%- endif -%}
+
       <div class="ch-hero__cta-group">
         {%- if section.settings.btn1_label != blank -%}
-          <a
-            href="{{ section.settings.btn1_link | default: '/collections/all' }}"
-            class="ch-hero__btn ch-hero__btn--primary"
-          >
+          <a href="{{ section.settings.btn1_link | default: '/collections/all' }}" class="ch-hero__btn ch-hero__btn--primary">
             {{ section.settings.btn1_label | escape }}
+            {%- render 'ch-icon', icon: 'arrow-right', size: 16 -%}
           </a>
         {%- endif -%}
         {%- if section.settings.btn2_label != blank -%}
-          <a
-            href="{{ section.settings.btn2_link | default: '/pages/about-us' }}"
-            class="ch-hero__btn ch-hero__btn--secondary"
-          >
+          <a href="{{ section.settings.btn2_link | default: '/pages/about-us' }}" class="ch-hero__btn ch-hero__btn--secondary">
             {{ section.settings.btn2_label | escape }}
           </a>
         {%- endif -%}
       </div>
+
       {%- if section.settings.show_trust_strip -%}
         <div class="ch-hero__trust-strip">
-          <span>✓ FSSAI Approved</span>
-          <span>✓ Lab Tested</span>
-          <span>✓ No Fillers</span>
-          <span>✓ Free Shipping ₹499+</span>
+          <span>{%- render 'ch-icon', icon: 'shield', size: 13 -%} FSSAI Approved</span>
+          <span>{%- render 'ch-icon', icon: 'flask',  size: 13 -%} Lab Tested</span>
+          <span>{%- render 'ch-icon', icon: 'leaf',   size: 13 -%} No Fillers</span>
+          <span>{%- render 'ch-icon', icon: 'truck',  size: 13 -%} Free Shipping ₹499+</span>
         </div>
       {%- endif -%}
     </div>
   </div>
+
+  <!-- Scroll indicator -->
+  {%- if section.settings.show_scroll_indicator -%}
+    <div class="ch-hero__scroll-indicator" aria-hidden="true">
+      <div class="ch-hero__scroll-mouse">
+        <div class="ch-hero__scroll-wheel"></div>
+      </div>
+    </div>
+  {%- endif -%}
 </section>
 
 {% schema %}
@@ -95,37 +173,47 @@
   "settings": [
     {
       "type": "header",
-      "content": "Images"
+      "content": "Background Media"
+    },
+    {
+      "type": "text",
+      "id": "youtube_url",
+      "label": "YouTube Video URL (for background video)",
+      "info": "Paste a YouTube URL, e.g. https://www.youtube.com/watch?v=XXXX. Video plays muted & auto-looped. Overrides image if set.",
+      "placeholder": "https://www.youtube.com/watch?v=..."
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Upload Background Video (optional, overrides image)"
     },
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Desktop Image (recommended: 2000×900px)"
-    },
-    {
-      "type": "image_picker",
-      "id": "mobile_image",
-      "label": "Mobile Image (optional, recommended: 800×1000px)"
-    },
-    {
-      "type": "color",
-      "id": "fallback_bg_color",
-      "label": "Fallback Background Color",
-      "default": "#1B4332"
+      "label": "Background Image (recommended 2000×900px)"
     },
     {
       "type": "header",
       "content": "Overlay"
     },
     {
+      "type": "select",
+      "id": "overlay_direction",
+      "label": "Overlay Direction",
+      "options": [
+        { "value": "to right", "label": "Left to Right" },
+        { "value": "to left",  "label": "Right to Left" },
+        { "value": "to bottom","label": "Top to Bottom" },
+        { "value": "135deg",   "label": "Diagonal" }
+      ],
+      "default": "to right"
+    },
+    {
       "type": "range",
       "id": "overlay_opacity",
-      "min": 0,
-      "max": 80,
-      "step": 5,
-      "unit": "%",
-      "label": "Overlay Opacity",
-      "default": 40
+      "min": 0, "max": 85, "step": 5, "unit": "%",
+      "label": "Overlay Darkness",
+      "default": 55
     },
     {
       "type": "header",
@@ -134,21 +222,15 @@
     {
       "type": "range",
       "id": "min_height",
-      "min": 40,
-      "max": 100,
-      "step": 5,
-      "unit": "vh",
-      "label": "Desktop Min Height",
+      "min": 40, "max": 100, "step": 5, "unit": "vh",
+      "label": "Desktop Height",
       "default": 85
     },
     {
       "type": "range",
       "id": "min_height_mobile",
-      "min": 40,
-      "max": 100,
-      "step": 5,
-      "unit": "vh",
-      "label": "Mobile Min Height",
+      "min": 40, "max": 100, "step": 5, "unit": "vh",
+      "label": "Mobile Height",
       "default": 70
     },
     {
@@ -160,38 +242,34 @@
       "id": "content_position",
       "label": "Content Position",
       "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "center", "label": "Center" },
-        { "value": "right", "label": "Right" }
+        { "value": "left",   "label": "Left" },
+        { "value": "center", "label": "Centre" },
+        { "value": "right",  "label": "Right" }
       ],
       "default": "left"
     },
     {
       "type": "text",
-      "id": "subheading",
-      "label": "Eyebrow / Subheading",
-      "default": "Welcome to CueHealth"
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "Science-backed wellness"
     },
     {
       "type": "richtext",
       "id": "heading",
-      "label": "Main Heading",
+      "label": "Heading",
       "default": "<p>Your Cue to <em>Healthy Life</em></p>"
     },
     {
       "type": "text",
       "id": "description",
-      "label": "Description",
-      "default": "Science-backed supplements crafted for real, lasting wellness. FSSAI approved. Lab tested. No fillers."
-    },
-    {
-      "type": "header",
-      "content": "Buttons"
+      "label": "Subtext",
+      "default": "FSSAI approved supplements with no fillers, no compromises. Crafted for real, lasting results."
     },
     {
       "type": "text",
       "id": "btn1_label",
-      "label": "Primary Button Label",
+      "label": "Primary Button",
       "default": "Shop Now"
     },
     {
@@ -202,7 +280,7 @@
     {
       "type": "text",
       "id": "btn2_label",
-      "label": "Secondary Button Label",
+      "label": "Secondary Button",
       "default": "Our Story"
     },
     {
@@ -211,13 +289,15 @@
       "label": "Secondary Button Link"
     },
     {
-      "type": "header",
-      "content": "Trust Strip"
+      "type": "checkbox",
+      "id": "show_trust_strip",
+      "label": "Show trust strip below buttons",
+      "default": true
     },
     {
       "type": "checkbox",
-      "id": "show_trust_strip",
-      "label": "Show Trust Strip Below Buttons",
+      "id": "show_scroll_indicator",
+      "label": "Show scroll indicator",
       "default": true
     }
   ],
@@ -225,16 +305,18 @@
     {
       "name": "Custom Hero Banner",
       "settings": {
-        "subheading": "Welcome to CueHealth",
+        "eyebrow": "Science-backed wellness",
         "heading": "<p>Your Cue to <em>Healthy Life</em></p>",
-        "description": "Science-backed supplements crafted for real, lasting wellness.",
+        "description": "FSSAI approved supplements with no fillers, no compromises. Crafted for real, lasting results.",
         "btn1_label": "Shop Now",
         "btn2_label": "Our Story",
-        "overlay_opacity": 40,
+        "overlay_opacity": 55,
+        "overlay_direction": "to right",
         "min_height": 85,
         "min_height_mobile": 70,
         "content_position": "left",
-        "show_trust_strip": true
+        "show_trust_strip": true,
+        "show_scroll_indicator": true
       }
     }
   ]

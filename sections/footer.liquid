@@ -102,35 +102,73 @@
                       </ul>
                     {%- endif -%}
                   {%- when 'brand_information' -%}
-                    <div class="footer-block__brand-info">
+                    <div class="footer-block__brand-info ch-footer-brand">
+                      <!-- Logo: prefer brand_image, fall back to header logo -->
                       {%- if settings.brand_image != blank -%}
-                        {%- assign brand_image_height = settings.brand_image_width
-                          | divided_by: settings.brand_image.aspect_ratio
-                        -%}
-                        <div
-                          class="footer-block__image-wrapper"
-                          style="max-width: min(100%, {{ settings.brand_image_width }}px);"
-                        >
+                        <div class="ch-footer-logo">
                           {{
                             settings.brand_image
-                            | image_url: width: 1100
-                            | image_tag:
-                              loading: 'lazy',
-                              widths: '50, 100, 150, 200, 300, 400, 550, 800, 1100',
-                              height: brand_image_height,
-                              width: settings.brand_image_width
+                            | image_url: width: 320
+                            | image_tag: loading: 'lazy', class: 'ch-footer-logo__img'
                           }}
                         </div>
+                      {%- elsif settings.logo != blank -%}
+                        <div class="ch-footer-logo">
+                          {{
+                            settings.logo
+                            | image_url: width: 320
+                            | image_tag: loading: 'lazy', class: 'ch-footer-logo__img'
+                          }}
+                        </div>
+                      {%- else -%}
+                        <div class="ch-footer-logo ch-footer-logo--text">
+                          <span>{{ shop.name }}</span>
+                        </div>
                       {%- endif -%}
-                      {%- if settings.brand_headline != blank -%}
-                        <h2 class="footer-block__heading rte">{{ settings.brand_headline }}</h2>
-                      {%- endif -%}
-                      {%- if settings.brand_description != blank -%}
-                        <div class="rte">{{ settings.brand_description }}</div>
-                      {%- endif -%}
-                      {%- if block.settings.show_social and has_social_icons -%}
-                        {%- render 'social-icons', class: 'footer__list-social' -%}
-                      {%- endif -%}
+
+                      <!-- Tagline -->
+                      <p class="ch-footer-tagline">Your Cue to Healthy Life</p>
+                      <p class="ch-footer-entity">by Voxply Life Sciences LLP</p>
+
+                      <!-- Social icons -->
+                      <div class="ch-footer-social">
+                        {%- if settings.social_instagram_link != blank -%}
+                          <a href="{{ settings.social_instagram_link }}" target="_blank" rel="noopener" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                          </a>
+                        {%- else -%}
+                          <a href="#" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                          </a>
+                        {%- endif -%}
+                        {%- if settings.social_facebook_link != blank -%}
+                          <a href="{{ settings.social_facebook_link }}" target="_blank" rel="noopener" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook"></i>
+                          </a>
+                        {%- else -%}
+                          <a href="#" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook"></i>
+                          </a>
+                        {%- endif -%}
+                        {%- if settings.social_youtube_link != blank -%}
+                          <a href="{{ settings.social_youtube_link }}" target="_blank" rel="noopener" aria-label="YouTube">
+                            <i class="fa-brands fa-youtube"></i>
+                          </a>
+                        {%- else -%}
+                          <a href="#" aria-label="YouTube">
+                            <i class="fa-brands fa-youtube"></i>
+                          </a>
+                        {%- endif -%}
+                        {%- if settings.social_twitter_link != blank -%}
+                          <a href="{{ settings.social_twitter_link }}" target="_blank" rel="noopener" aria-label="Twitter/X">
+                            <i class="fa-brands fa-x-twitter"></i>
+                          </a>
+                        {%- else -%}
+                          <a href="#" aria-label="Twitter/X">
+                            <i class="fa-brands fa-x-twitter"></i>
+                          </a>
+                        {%- endif -%}
+                      </div>
                     </div>
                   {%- when 'image' -%}
                     <div class="footer-block__details-content footer-block-image {{ block.settings.alignment }}">
@@ -320,11 +358,28 @@
     </div>
   </div>
   <div class="ch-footer-bottom-bar">
-    GSTIN: 09ABBFV9747M1Z9 &nbsp;|&nbsp;
-    FSSAI: [License Pending] &nbsp;|&nbsp;
-    Address: Upper Ground Floor, 003, Kh No 485, Sector 73, Noida, UP 201301 &nbsp;|&nbsp;
-    <a href="mailto:hello@cuehealth.in">hello@cuehealth.in</a> &nbsp;|&nbsp;
-    <a href="https://wa.me/917455918832">WhatsApp: 7455918832</a>
+    <div class="ch-footer-bottom-bar__links">
+      <a href="/pages/shipping-policy">Shipping</a>
+      <span>·</span>
+      <a href="/pages/refund-policy">Refunds</a>
+      <span>·</span>
+      <a href="/pages/privacy-policy">Privacy</a>
+      <span>·</span>
+      <a href="/pages/terms">Terms</a>
+      <span>·</span>
+      <a href="/pages/disclaimer">Disclaimer</a>
+      <span>·</span>
+      <a href="/pages/contact-us">Contact</a>
+    </div>
+    <div class="ch-footer-bottom-bar__copy">
+      &copy; {{ 'now' | date: '%Y' }} CueHealth &mdash; Voxply Life Sciences LLP
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      GSTIN: 09ABBFV9747M1Z9
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      FSSAI: <em>License Pending</em>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      Made in India <i class="fa-solid fa-heart" style="color:#C8960C;font-size:1rem;"></i>
+    </div>
   </div>
 </footer>
 
