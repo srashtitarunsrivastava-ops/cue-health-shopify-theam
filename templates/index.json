@@ -1,46 +1,21 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Your Cue to Healthy Life",
-            "heading_size": "h0"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "Science-backed supplements crafted for real, lasting wellness.",
-            "text_style": "subtitle"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop All Products",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": false,
-            "button_label_2": "Our Story",
-            "button_link_2": "shopify://pages/about-us",
-            "button_style_secondary_2": true
-          }
-        }
-      },
-      "block_order": ["heading", "text", "button"],
+    "custom_hero": {
+      "type": "custom-hero-banner",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-left",
-        "desktop_content_alignment": "left",
-        "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
+        "subheading": "Welcome to CueHealth",
+        "heading": "<p>Your Cue to <em>Healthy Life</em></p>",
+        "description": "Science-backed supplements crafted for real, lasting wellness. FSSAI approved. Lab tested. No fillers.",
+        "btn1_label": "Shop Now",
+        "btn1_link": "shopify://collections/all",
+        "btn2_label": "Our Story",
+        "btn2_link": "shopify://pages/about-us",
+        "overlay_opacity": 40,
+        "min_height": 85,
+        "min_height_mobile": 70,
+        "content_position": "left",
+        "show_trust_strip": true,
+        "fallback_bg_color": "#1B4332"
       }
     },
     "trust_badges": {
@@ -62,7 +37,7 @@
         "products_to_show": 8,
         "title": "Our Bestsellers",
         "heading_size": "h2",
-        "description": "Top-rated supplements loved by thousands of wellness seekers",
+        "description": "Top-rated supplements loved by thousands of wellness seekers across India",
         "show_description": true,
         "description_style": "body",
         "columns_desktop": 4,
@@ -105,51 +80,27 @@
       "blocks": {
         "usp_1": {
           "type": "usp_item",
-          "settings": {
-            "icon_emoji": "🌿",
-            "title": "100% Natural",
-            "description": "Clean ingredients — no artificial colours, flavours, or fillers."
-          }
+          "settings": { "icon_emoji": "🌿", "title": "100% Natural", "description": "Clean ingredients — no artificial colours, flavours, or fillers." }
         },
         "usp_2": {
           "type": "usp_item",
-          "settings": {
-            "icon_emoji": "🔬",
-            "title": "Lab Tested & Certified",
-            "description": "Every batch is third-party tested for purity, potency, and safety."
-          }
+          "settings": { "icon_emoji": "🔬", "title": "Lab Tested & Certified", "description": "Every batch is third-party tested for purity, potency, and safety." }
         },
         "usp_3": {
           "type": "usp_item",
-          "settings": {
-            "icon_emoji": "🏥",
-            "title": "FSSAI Approved",
-            "description": "Manufactured in FSSAI-licensed facilities meeting the highest safety standards."
-          }
+          "settings": { "icon_emoji": "🏥", "title": "FSSAI Approved", "description": "Manufactured in FSSAI-licensed facilities meeting the highest safety standards." }
         },
         "usp_4": {
           "type": "usp_item",
-          "settings": {
-            "icon_emoji": "💊",
-            "title": "Clinically Researched",
-            "description": "Formulas backed by peer-reviewed science and clinical research."
-          }
+          "settings": { "icon_emoji": "💊", "title": "Clinically Researched", "description": "Formulas backed by peer-reviewed science and clinical research." }
         },
         "usp_5": {
           "type": "usp_item",
-          "settings": {
-            "icon_emoji": "🚀",
-            "title": "Fast & Free Delivery",
-            "description": "Free shipping on orders above ₹499. Delivered pan-India in 3–5 days."
-          }
+          "settings": { "icon_emoji": "🚀", "title": "Fast & Free Delivery", "description": "Free shipping on orders above ₹499. Delivered pan-India in 3–7 days." }
         },
         "usp_6": {
           "type": "usp_item",
-          "settings": {
-            "icon_emoji": "🔄",
-            "title": "7-Day Easy Returns",
-            "description": "Not satisfied? Return within 7 days for a full refund — no questions asked."
-          }
+          "settings": { "icon_emoji": "🔄", "title": "7-Day Easy Returns", "description": "Not satisfied? Return within 7 days for a full refund — no questions asked." }
         }
       },
       "block_order": ["usp_1", "usp_2", "usp_3", "usp_4", "usp_5", "usp_6"],
@@ -165,48 +116,23 @@
       "blocks": {
         "t1": {
           "type": "testimonial",
-          "settings": {
-            "customer_name": "Priya S.",
-            "customer_location": "Mumbai",
-            "rating": 5,
-            "review_text": "CueHealth supplements have completely transformed my energy levels. I feel more focused and active throughout the day. Highly recommended!"
-          }
+          "settings": { "customer_name": "Priya S.", "customer_location": "Mumbai", "rating": 5, "review_text": "CueHealth supplements have completely transformed my energy levels. I feel more focused and active throughout the day. Highly recommended!" }
         },
         "t2": {
           "type": "testimonial",
-          "settings": {
-            "customer_name": "Rahul M.",
-            "customer_location": "Delhi",
-            "rating": 5,
-            "review_text": "Finally found supplements that actually work! Great quality ingredients and fast delivery. Will definitely order again."
-          }
+          "settings": { "customer_name": "Rahul M.", "customer_location": "Delhi", "rating": 5, "review_text": "Finally found supplements that actually work! Great quality ingredients and fast delivery. Will definitely order again." }
         },
         "t3": {
           "type": "testimonial",
-          "settings": {
-            "customer_name": "Ananya K.",
-            "customer_location": "Bangalore",
-            "rating": 5,
-            "review_text": "The sleep supplement is a game-changer. I was sceptical at first but noticed a huge improvement in my sleep quality within the first week."
-          }
+          "settings": { "customer_name": "Ananya K.", "customer_location": "Bangalore", "rating": 5, "review_text": "The sleep supplement is a game-changer. I was sceptical at first but noticed a huge improvement in my sleep quality within the first week." }
         },
         "t4": {
           "type": "testimonial",
-          "settings": {
-            "customer_name": "Vikram R.",
-            "customer_location": "Hyderabad",
-            "rating": 4,
-            "review_text": "Premium quality at a fair price. Love that they're FSSAI approved and lab tested. Trust is everything when it comes to supplements."
-          }
+          "settings": { "customer_name": "Vikram R.", "customer_location": "Hyderabad", "rating": 4, "review_text": "Premium quality at a fair price. Love that they're FSSAI approved and lab tested. Trust is everything when it comes to supplements." }
         },
         "t5": {
           "type": "testimonial",
-          "settings": {
-            "customer_name": "Neha T.",
-            "customer_location": "Pune",
-            "rating": 5,
-            "review_text": "I've been using CueHealth for 3 months now and I'm absolutely blown away by the results. My immunity has improved noticeably!"
-          }
+          "settings": { "customer_name": "Neha T.", "customer_location": "Pune", "rating": 5, "review_text": "I've been using CueHealth for 3 months now and I'm absolutely blown away by the results. My immunity has improved noticeably!" }
         }
       },
       "block_order": ["t1", "t2", "t3", "t4", "t5"],
@@ -240,15 +166,11 @@
       "blocks": {
         "heading": {
           "type": "heading",
-          "settings": {
-            "heading": "Join the Wellness Community"
-          }
+          "settings": { "heading": "Join the Wellness Community" }
         },
         "subtext": {
           "type": "paragraph",
-          "settings": {
-            "text": "Get science-backed wellness tips, product launches, and exclusive offers — straight to your inbox."
-          }
+          "settings": { "text": "Get science-backed wellness tips, product launches, and exclusive offers — straight to your inbox." }
         }
       },
       "block_order": ["heading", "subtext"],
@@ -261,7 +183,7 @@
     }
   },
   "order": [
-    "image_banner",
+    "custom_hero",
     "trust_badges",
     "featured_collection",
     "shop_by_concern",

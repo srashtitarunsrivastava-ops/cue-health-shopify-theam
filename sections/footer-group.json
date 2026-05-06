@@ -1,35 +1,54 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "brand_info": {
+          "type": "brand_information",
+          "settings": {
+            "show_social": true
+          }
+        },
+        "quick_links": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Quick Links",
+            "menu": "main-menu"
+          }
+        },
+        "policy_links": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Policies",
+            "menu": "footer"
+          }
+        },
+        "contact_info": {
+          "type": "text",
+          "settings": {
+            "heading": "Contact Us",
+            "subtext": "<p><strong>Email:</strong> <a href=\"mailto:hello@cuehealth.in\">hello@cuehealth.in</a></p><p><strong>WhatsApp:</strong> <a href=\"https://wa.me/917455918832\">7455918832</a></p><p><strong>Address:</strong> Upper Ground Floor, 003, Kh No 485, Sector 73, Noida, UP – 201301</p><p><strong>Hours:</strong> Mon–Sat, 10am–7pm IST</p>"
+          }
+        }
+      },
+      "block_order": ["brand_info", "quick_links", "policy_links", "contact_info"],
       "settings": {
         "color_scheme": "scheme-1",
-        "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
-        "enable_follow_on_shop": true,
-        "show_social": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
+        "newsletter_enable": false,
+        "newsletter_heading": "Join the Wellness Community",
+        "enable_follow_on_shop": false,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
         "payment_enable": true,
-        "show_policy": true,
+        "show_policy": false,
         "margin_top": 0,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 48,
+        "padding_bottom": 32
       }
     }
   },
-  "order": [
-    "footer"
-  ]
+  "order": ["footer"]
 }
